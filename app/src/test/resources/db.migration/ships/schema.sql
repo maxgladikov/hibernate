@@ -1,0 +1,45 @@
+CREATE TABLE IF NOT EXISTS classes(
+	name VARCHAR(20),
+	type ENUM('bb','bc') NOT NULL,
+	country VARCHAR(20) NOT NULL,
+	num_guns INT NOT NULL,
+	bore INT NOT NULL,
+	displacement INT NOT NULL,
+	PRIMARY KEY(name),
+	INDEX(name)
+);
+
+CREATE TABLE IF NOT EXISTS battles(
+	name VARCHAR(20) NOT NULL,
+	dating DATE NOT NULL,
+	PRIMARY KEY(name),
+	INDEX(NAME)
+);
+
+CREATE TABLE IF NOT EXISTS ships(
+	name VARCHAR(20),
+	class VARCHAR(20),
+	launched INT NOT NULL,
+	PRIMARY KEY(name),
+	FOREIGN KEY(class)
+	REFERENCES classes(name)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	INDEX(name)
+);
+
+CREATE TABLE IF NOT EXISTS outcomes(
+	ship VARCHAR(20) NOT NULL,
+	battle VARCHAR(20) NOT NULL,
+	result ENUM('sunk','damaged','ok') NOT NULL,
+	PRIMARY KEY(ship,battle),
+	FOREIGN KEY(ship)
+	REFERENCES ships(name)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE,
+	FOREIGN KEY(battle)
+	REFERENCES battles(name)
+	ON DELETE CASCADE
+	ON UPDATE CASCADE
+);
+

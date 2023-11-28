@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence 
+             https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+	<persistence-unit name="caveat_emptor" transaction-type="RESOURCE_LOCAL">   
+        
+        <description>
+            application
+        </description>
+        
+        <class>online.gladikov.hibernate.model.caveat_emptor.User</class>
+        <class>online.gladikov.hibernate.model.caveat_emptor.Address</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>     
+
+        <properties>    
+            <!-- Database connection settings -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://192.168.201.63:3306/caveat_emptor" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            <property name="jakarta.persistence.jdbc.user" value="root" />
+            <property name="jakarta.persistence.jdbc.password" value="password" />
+            <!-- Automatically export the schema -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="create-drop" />
+            <!-- Echo all executed SQL to console -->
+            <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.use_sql_comments" value="false"/>
+            <property name="hibernate.highlight_sql" value="false" />
+            <!-- pessimistic lock timeout and the query timeout in milliseconds -->
+            <property name="jakarta.persistence.lock.timeout" value="100"/>
+            <property name="jakarta.persistence.query.timeout" value="100"/>
+            <!--  HikariCP -->
+            <property name="hibernate.hikari.minimumIdle" value="2"/>
+            <property name="hibernate.hikari.maximumPoolSize" value="5"/>
+            <property name="hibernate.hikari.idleTimeout" value="30000"/>
+            <property name="hibernate.connection.provider_class" value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
+            <!-- sql scripts
+            <property name="hibernate.hbm2ddl.import_files"  value="classpath:/schema.sql" />
+             -->
+       </properties>
+      
+    </persistence-unit>
+
+
+    <persistence-unit name="dns" transaction-type="RESOURCE_LOCAL">   
+        
+        <description>
+            mysql config
+        </description>
+        
+        <class>online.gladikov.hibernate.model.dns.Product</class>     
+        <class>online.gladikov.hibernate.model.dns.Printer</class>     
+        <class>online.gladikov.hibernate.model.dns.PC</class>     
+        <class>online.gladikov.hibernate.model.dns.Laptop</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>     
+
+        <properties>    
+            <!-- Database connection settings -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://192.168.201.63:3306/dns" />
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            <property name="jakarta.persistence.jdbc.user" value="root" />
+            <property name="jakarta.persistence.jdbc.password" value="password" />
+            <!-- Automatically export the schema -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="none" />
+            <!-- Echo all executed SQL to console -->
+             <property name="hibernate.show_sql" value="false" />
+            <property name="hibernate.format_sql" value="true" />
+            <property name="hibernate.use_sql_comments" value="true"/>
+            <property name="hibernate.highlight_sql" value="false" />
+            <!-- pessimistic lock timeout and the query timeout in milliseconds -->
+            <property name="jakarta.persistence.lock.timeout" value="100"/>
+            <property name="jakarta.persistence.query.timeout" value="100"/>
+            <!--  HikariCP -->
+            <property name="hibernate.hikari.minimumIdle" value="2"/>
+            <property name="hibernate.hikari.maximumPoolSize" value="5"/>
+            <property name="hibernate.hikari.idleTimeout" value="30000"/>
+            <property name="hibernate.connection.provider_class" value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
+            <!-- sql scripts
+            <property name="hibernate.hbm2ddl.import_files"  value="classpath:/schema.sql" />
+             -->
+       </properties>
+      
+    </persistence-unit>
+
+</persistence>
